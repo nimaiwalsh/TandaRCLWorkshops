@@ -12,6 +12,7 @@
   "main": "index.js",
   "name": "tandarcl",
   "scripts": {
+    "format": "prettier --write '**/**/*.{mjs,js}'",
     "predev": "yarn",
     "dev": "nodemon --experimental-modules src/index.mjs",
     "start": "pm2 start src/index.js --name tanda-rcl-server --node-args=\"--experimental-modules\"",
@@ -20,7 +21,8 @@
   "version": "1.0.0",
   "devDependencies": {
     "nodemon": "^1.17.5",
-    "pm2": "^2.10.4"
+    "pm2": "^2.10.4",
+    "prettier": "^1.13.5"
   },
   "private": true
 }
