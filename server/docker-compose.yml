@@ -1,0 +1,22 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment: &db_env
+      POSTGRES_USER: tandarclapp
+      POSTGRES_PASSWORD: tandarclapp
+      POSTGRES_DB: tandarcl
+  web:
+    build: .
+    command: yarn run dev
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      <<: *db_env
+      APP_PORT: 3000
+      DATABASE_URL: postgres://tandarcl@postgres/tandarcl

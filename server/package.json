@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "koa": "^2.5.1",
+    "nodemon": "^1.17.5"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "name": "tandarcl",
+  "scripts": {
+    "predev": "yarn",
+    "dev": "nodemon --experimental-modules ./source/index.mjs",
+    "setup": "./scripts/setup.sh"
+  },
+  "version": "1.0.0"
+}
