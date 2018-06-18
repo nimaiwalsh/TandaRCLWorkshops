@@ -1,14 +1,14 @@
-version: '2'
+version: '3'
 services:
   postgres:
-    image: postgres:9.6.2-alpine
+    image: postgres:alpine
     environment: &db_env
-      POSTGRES_USER: tandarclapp
-      POSTGRES_PASSWORD: tandarclapp
-      POSTGRES_DB: tandarcl
+      POSTGRES_USER: tandarcl
+      POSTGRES_PASSWORD: tandarcl
   web:
     build: .
     command: yarn run dev
+    tty: true
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules
@@ -19,4 +19,5 @@ services:
     environment:
       <<: *db_env
       APP_PORT: 3000
-      DATABASE_URL: postgres://tandarcl@postgres/tandarcl
+      DATABASE_URL: postgres://tandarcl:tandarcl@postgres/tandarcl
+      TOKEN_SECRET: "${TOKEN_SECRET}"

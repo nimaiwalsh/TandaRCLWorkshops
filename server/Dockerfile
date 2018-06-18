@@ -1,8 +1,9 @@
-FROM node:8.11.3-alpine
+FROM node:10-alpine
 
 WORKDIR /usr/app
+RUN apk add --update python make gcc g++
 
 COPY package.json .
-RUN npm install --quiet
+RUN yarn
 
 COPY . .
