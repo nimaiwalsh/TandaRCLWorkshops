@@ -5,7 +5,7 @@ import k from 'koa-route';
 import db from './database';
 import userRouteAttacher from './user';
 
-const TOKEN_REGEX = /bearer (.*)/
+const TOKEN_REGEX = /bearer (.*)/;
 const app = new Koa();
 
 app.use(logger());

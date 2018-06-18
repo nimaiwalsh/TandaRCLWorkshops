@@ -3,9 +3,9 @@ export default function createTokenModel(sequelize, DataTypes) {
     token: DataTypes.STRING,
   });
 
-  Token.associate = function (models) {
+  Token.associate = function(models) {
     Token.belongsTo(models.user);
-  }
+  };
 
   return Token;
 }

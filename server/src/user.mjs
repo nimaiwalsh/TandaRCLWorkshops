@@ -32,9 +32,7 @@ async function get(ctx, id) {
   ctx.body = display(user);
 }
 
-async function update(ctx, id) {
-
-}
+async function update(ctx, id) {}
 
 async function create(ctx) {
   const raw = ctx.request.body;
@@ -42,10 +40,10 @@ async function create(ctx) {
   const password = await hashPassword(raw.password);
 
   try {
-  const user = await db.models.user.create({
-    ...raw,
-    password,
-  });
+    const user = await db.models.user.create({
+      ...raw,
+      password,
+    });
   } catch (e) {
     if (e.name === 'SequelizeUniqueConstraintError') {
       const errors = e.errors.map(error => error.message);
@@ -60,7 +58,7 @@ async function create(ctx) {
 async function login(ctx) {
   console.log(SECRET);
   const { email, password } = ctx.request.body;
-  const user = await db.models.user.findOne({ where: { email }});
+  const user = await db.models.user.findOne({ where: { email } });
   if (!user) {
     // this should probably do some extra work so that people externally
     // can't tell if the password is wrong or the email doesn't exist
@@ -75,10 +73,11 @@ async function login(ctx) {
   }
 
   // definitely not *the most* secure, but it will do for now
-  const token = crypto.createHmac('sha256', SECRET)
-                  .update(user.id.toString())
-                  .update(`${Date.now()}`)
-                  .digest('hex');
+  const token = crypto
+    .createHmac('sha256', SECRET)
+    .update(user.id.toString())
+    .update(`${Date.now()}`)
+    .digest('hex');
   const t = await db.models.token.create({ token, userId: user.id });
   t.setUser(user);
 
@@ -96,4 +95,3 @@ export default function user(app) {
 
   app.use(k.post('/login', login));
 }
-

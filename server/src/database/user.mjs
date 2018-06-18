@@ -5,7 +5,7 @@ export default function createUserModel(sequelize, DataTypes) {
     password: DataTypes.STRING,
   });
 
-  User.associate = function (models) {
+  User.associate = function(models) {
     User.hasMany(models.token);
     User.hasMany(models.post);
   };
