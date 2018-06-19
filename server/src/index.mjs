@@ -4,8 +4,9 @@ import bodyParser from 'koa-bodyparser';
 import k from 'koa-route';
 import db from './database';
 import userRouteAttacher from './user';
+import postRouteAttacher from './post';
 
-const TOKEN_REGEX = /bearer (.*)/;
+const TOKEN_REGEX = /[Bb]earer (.*)/;
 const app = new Koa();
 
 app.use(logger());
@@ -39,5 +40,6 @@ app.use(async (ctx, next) => {
 });
 
 userRouteAttacher(app);
+postRouteAttacher(app);
 
 app.listen(process.env.APP_PORT);
