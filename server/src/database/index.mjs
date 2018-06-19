@@ -20,6 +20,6 @@ Object.values(sequelize.models)
   .filter(m => typeof m.associate === 'function')
   .forEach(m => m.associate(sequelize.models));
 
-sequelize.sync({ force: true });
+sequelize.sync();
 
 export default sequelize;
