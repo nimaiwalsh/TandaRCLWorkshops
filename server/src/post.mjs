@@ -5,14 +5,13 @@ async function get(ctx) {
   const { page = 1 } = ctx.request.query;
   const offset = (page - 1) * 25;
   const limit = page * 25;
-  const { count, rows } = await db.models.post.findAndCount({ offset, limit });
+  const { count, rows } = await db.models.post.findAndCount({ offset, limit, order: [['createdAt', 'DESC'], ['id', 'DESC']] });
   ctx.body = {
     items: rows,
     page,
     count,
     next: count > limit,
-  }
-  console.log(count, rows);
+  };
 }
 
 async function find(ctx, id) {
