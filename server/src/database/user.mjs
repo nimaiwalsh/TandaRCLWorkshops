@@ -10,5 +10,16 @@ export default function createUserModel(sequelize, DataTypes) {
     User.hasMany(models.post);
   };
 
+  User.prototype.display = async function display() {
+    const posts = await this.getPosts({ scope: ['root'] });
+    const replies = await this.getPosts({ scope: ['reply'] });
+    return {
+      name: this.name,
+      email: this.email,
+      replies,
+      posts,
+    };
+  }
+
   return User;
 }

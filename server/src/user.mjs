@@ -6,10 +6,6 @@ import db from './database';
 const SALT_ROUNDS = 12;
 const SECRET = process.env.TOKEN_SECRET;
 
-function display({ name, email }) {
-  return { name, email };
-}
-
 function hashPassword(password) {
   return bcrypt.hash(password, SALT_ROUNDS);
 }
@@ -29,7 +25,7 @@ async function get(ctx, id) {
     return ctx.throw(404);
   }
 
-  ctx.body = display(user);
+  ctx.body = await user.display();
 }
 
 async function update(ctx, id) {}
