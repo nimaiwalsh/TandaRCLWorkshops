@@ -18,18 +18,40 @@ If you are not familiar with css modules see `client/src/index.js` and `client/s
 
 ## Challenge 1
 
-First of we are going to setup a login page. API details you will need are:
+First of we are going to setup a signup page. API details you will need are:
 
 API: http://social.workshops.tanda.co
+
+ENDPOINT: /users
+
+METHOD: POST
+
+BODY:
+
+```js
+{
+  "name": "Example Name",
+  "email": "test@example.com",
+  "password": "hunter2"
+}
+```
+
+A good goal for this will be to just create the user and log it to the console.
+
+## Challenge 2
+
+Try signing that user in to get an auth token
 
 ENDPOINT: /login
 
 METHOD: POST
 
 BODY:
+
 ```js
 {
   "email": "test@example.com",
   "password": "hunter2"
 }
 ```
+
