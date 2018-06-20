@@ -1,13 +1,25 @@
 import k from 'koa-route';
+import Sequelize from 'sequelize';
 import db from './database';
+
+const Op = Sequelize.Op;
 
 async function get(ctx) {
   const { page = 1 } = ctx.request.query;
   const offset = (page - 1) * 25;
   const limit = page * 25;
-  const { count, rows } = await db.models.post.findAndCount({ offset, limit, order: [['createdAt', 'DESC'], ['id', 'DESC']] });
+  const { count, rows } = await db.models.post.findAndCount({
+    // only retrieve top-level comments
+    where: {
+      parentId: null,
+    },
+    offset,
+    limit,
+    order: [['createdAt', 'DESC'], ['id', 'DESC']],
+  });
+  const items = await Promise.all(rows.map(row => row.display()));
   ctx.body = {
-    items: rows,
+    items,
     page,
     count,
     next: count > limit,
@@ -20,7 +32,14 @@ async function find(ctx, id) {
     return ctx.throw(404);
   }
 
-  ctx.body = post.toJSON();
+  const replies = await post
+    .getReplies()
+    .then(r => Promise.all(r.map(p => p.display())));
+
+  ctx.body = {
+    ...post.toJSON(),
+    replies,
+  };
 }
 
 async function update(ctx, id) {
