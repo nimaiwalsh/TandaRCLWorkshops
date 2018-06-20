@@ -40,7 +40,7 @@ async function create(ctx) {
       ...raw,
       password,
     });
-    ctx.body = user.display();
+    ctx.body = await user.display();
   } catch (e) {
     if (e.name === 'SequelizeUniqueConstraintError') {
       const errors = e.errors.map(error => error.message);
@@ -77,7 +77,7 @@ async function login(ctx) {
   t.setUser(user);
 
   ctx.body = {
-    ...user.display(),
+    ...(await user.display()),
     token,
   };
 }
