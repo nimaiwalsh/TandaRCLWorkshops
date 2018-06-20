@@ -4,6 +4,8 @@
 
 ## Overview
 
+Base URL: http://social.workshops.tanda.co
+
 Everyone is friends with everyone. You can create an account, log in, and post.
 Posts can be replied to, as well, and users can be looked up to see post
 history.
