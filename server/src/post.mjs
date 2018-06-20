@@ -82,7 +82,8 @@ async function del(ctx, id) {
     return ctx.throw(401, 'You can only delete your own posts');
   }
 
-  await post.delete();
+  await post.setUser(null);
+
   ctx.body = null;
   ctx.status = 204;
 }

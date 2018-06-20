@@ -24,6 +24,14 @@ token.
 Authorization: bearer <token>
 ```
 
+### Posts
+
+- Posts don't have any limits on comment depth
+- Deleting a post just removes the user's association from it - you should
+  handle the case where `userId` is `null`.
+- The title can't be longer than 255 characters
+- The body is plaintext only
+
 ## Endpoints
 
 ### User Get All
@@ -249,26 +257,7 @@ Reponse:
   "updatedAt": "2018-06-20T01:13:31.619Z",
   "userId": 12,
   "parentId": null,
-  "replies": [{
-    "id": 181,
-    "title": "maxime ipsum iste",
-    "body": "Autem ipsam est. Voluptatem eos laudantium quos",
-    "createdAt": "2018-06-20T01:10:32.107Z",
-    "updatedAt": "2018-06-20T01:10:32.110Z",
-    "userId": 14,
-    "parentId": 149,
-    "replyCount": 1
-  }, {
-    "id": 239,
-    "title": "voluptas dolores non",
-    "body": "Consectetur explicabo corrupti consequatur blanditiis consequatur
-    inventore sed eum iste. Tenetur placeat veritatis enim.",
-    "createdAt": "2018-06-20T01:10:32.992Z",
-    "updatedAt": "2018-06-20T01:10:32.995Z",
-    "userId": 6,
-    "parentId": 149,
-    "replyCount": 1
-  }]
+  "replyCount": 2
 }
 ```
 
