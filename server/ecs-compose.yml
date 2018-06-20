@@ -6,14 +6,13 @@ services:
       POSTGRES_USER: tandarcl
       POSTGRES_PASSWORD: tandarcl
   web:
-    build: .
-    command: yarn dev
+    image: 364240627620.dkr.ecr.ap-southeast-2.amazonaws.com/tanda-social
+    command: yarn start
     tty: true
-    volumes:
-      - .:/usr/app/
-      - /usr/app/node_modules
     ports:
-      - "3000:3000"
+      - "80:3000"
+    links:
+      - postgres
     depends_on:
       - postgres
     environment:
