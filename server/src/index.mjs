@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
+import kors from '@koa/cors';
 import k from 'koa-route';
 import db from './database';
 import userRouteAttacher from './user';
@@ -11,6 +12,8 @@ const app = new Koa();
 
 app.use(logger());
 app.use(bodyParser());
+app.use(kors());
+
 app.use(async (ctx, next) => {
   const authHeader = ctx.headers.authorization;
   if (!authHeader) {
