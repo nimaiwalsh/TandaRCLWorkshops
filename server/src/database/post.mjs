@@ -1,7 +1,26 @@
+import Sequelize from 'sequelize';
+
+const { Op } = Sequelize;
+
 export default function createPostModel(sequelize, DataTypes) {
   const Post = sequelize.define('post', {
     title: DataTypes.STRING,
     body: DataTypes.TEXT,
+  }, {
+    scopes: {
+      root: {
+        where: {
+          parentId: null,
+        },
+      },
+      reply: {
+        where: {
+          parentId: {
+            [Op.ne]: null,
+          },
+        },
+      },
+    },
   });
 
   Post.associate = function(models) {

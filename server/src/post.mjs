@@ -8,11 +8,7 @@ async function get(ctx) {
   const { page = 1 } = ctx.request.query;
   const offset = (page - 1) * 25;
   const limit = page * 25;
-  const { count, rows } = await db.models.post.findAndCount({
-    // only retrieve top-level comments
-    where: {
-      parentId: null,
-    },
+  const { count, rows } = await db.models.post.scope('root').findAndCount({
     offset,
     limit,
     order: [['createdAt', 'DESC'], ['id', 'DESC']],
