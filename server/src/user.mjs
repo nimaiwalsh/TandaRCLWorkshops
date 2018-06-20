@@ -16,7 +16,7 @@ function comparePassword(hashed, string) {
 
 async function getAll(ctx) {
   const users = await db.models.user.findAll();
-  ctx.body = users.map(user => user.display());
+  ctx.body = await Promise.all(users.map(user => user.display()));
 }
 
 async function get(ctx, id) {

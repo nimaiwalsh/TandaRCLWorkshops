@@ -14,6 +14,7 @@ export default function createUserModel(sequelize, DataTypes) {
     const posts = await this.getPosts({ scope: ['root'] });
     const replies = await this.getPosts({ scope: ['reply'] });
     return {
+      id: this.id,
       name: this.name,
       email: this.email,
       replies,

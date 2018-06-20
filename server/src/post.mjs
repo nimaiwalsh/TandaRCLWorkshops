@@ -46,15 +46,15 @@ async function update(ctx, id) {
 
   const { body } = ctx.request;
   const update = {};
-  if ('message' in body) {
-    update.message = body.message;
+  if ('body' in body) {
+    update.body = body.body;
   }
   if ('title' in body) {
-    update.message = body.message;
+    update.title = body.title;
   }
 
   const updated = await post.update(update);
-  ctx.body = updated.toJSON();
+  ctx.body = await updated.display();
 }
 
 async function create(ctx) {
@@ -62,6 +62,7 @@ async function create(ctx) {
     const post = await db.models.post.create(ctx.request.body);
     await post.setUser(ctx.user);
     ctx.body = post.toJSON();
+    ctx.status = 201;
   } catch (e) {
     if (Array.isArray(e.errors)) {
       const errors = e.errors.map(error => error.message);
@@ -81,7 +82,9 @@ async function del(ctx, id) {
     return ctx.throw(401, 'You can only delete your own posts');
   }
 
-  post.delete();
+  await post.delete();
+  ctx.body = null;
+  ctx.status = 204;
 }
 
 export default function post(app) {
