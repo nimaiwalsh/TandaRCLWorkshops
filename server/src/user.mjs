@@ -16,7 +16,7 @@ function comparePassword(hashed, string) {
 
 async function getAll(ctx) {
   const users = await db.models.user.findAll();
-  ctx.body = users.map(user => display(user));
+  ctx.body = users.map(user => user.display());
 }
 
 async function get(ctx, id) {
@@ -40,7 +40,7 @@ async function create(ctx) {
       ...raw,
       password,
     });
-    ctx.body = display(user);
+    ctx.body = user.display();
   } catch (e) {
     if (e.name === 'SequelizeUniqueConstraintError') {
       const errors = e.errors.map(error => error.message);
@@ -77,7 +77,7 @@ async function login(ctx) {
   t.setUser(user);
 
   ctx.body = {
-    ...display(user),
+    ...user.display(),
     token,
   };
 }

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import faker from 'faker';
 
-axios.defaults.baseURL = 'http://localhost:3000';
-// axios.defaults.baseURL = 'http://52.63.49.248';
+// axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://52.63.49.248';
 
 const users = [
   {
