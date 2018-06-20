@@ -40,7 +40,7 @@ Method: `GET`
 URL: `/users`
 Response: Array of User
 
-```json
+```js
 [{
   "id": 1,
   "name": "Example Name",
@@ -48,8 +48,7 @@ Response: Array of User
   "posts": [{
     "id": 1,
     "title": "autem cupiditate doloribus",
-    "body": "Ratione alias voluptas est ex architecto libero dolores quaerat
-    tempore.",
+    "body": "Ratione alias voluptas est ex architecto libero dolores quaerat tempore.",
     "userId": 1,
     "parentId": null, // this is a root-level post
     "createdAt": "2018-06-20T01:10:31.617Z",
@@ -58,8 +57,7 @@ Response: Array of User
   "replies": [{
     "id": 2,
     "title": "unde eligendi non",
-    "body": "Ad nobis voluptatem.\nPerferendis iste velit libero eum sequi
-    dignissimos.",
+    "body": "Ad nobis voluptatem.\nPerferendis iste velit libero eum sequi dignissimos.",
     "userId": 1,
     "parentId": 1, // this is a reply
     "createdAt": "2018-06-20T01:10:31.617Z",
@@ -75,7 +73,7 @@ URL: `/users/:id`
 
 Response: User
 
-```json
+```js
 {
   "id": 1,
   "name": "Example Name",
@@ -83,8 +81,7 @@ Response: User
   "posts": [{
     "id": 1,
     "title": "autem cupiditate doloribus",
-    "body": "Ratione alias voluptas est ex architecto libero dolores quaerat
-    tempore.",
+    "body": "Ratione alias voluptas est ex architecto libero dolores quaerat tempore.",
     "userId": 1,
     "parentId": null, // this is a root-level post
     "createdAt": "2018-06-20T01:10:31.617Z",
@@ -93,8 +90,7 @@ Response: User
   "replies": [{
     "id": 2,
     "title": "unde eligendi non",
-    "body": "Ad nobis voluptatem.\nPerferendis iste velit libero eum sequi
-    dignissimos.",
+    "body": "Ad nobis voluptatem.\nPerferendis iste velit libero eum sequi dignissimos.",
     "userId": 1,
     "parentId": 1, // this is a reply
     "createdAt": "2018-06-20T01:10:31.617Z",
@@ -109,7 +105,7 @@ Method: `POST`
 URL: `/users`
 Body:
 
-```json
+```js
 {
   "name": "Example Name",
   "email": "test@example.com",
@@ -119,7 +115,7 @@ Body:
 
 Reponse:
 
-```json
+```js
 {
   "id": 1,
   "name": "Example Name",
@@ -135,7 +131,7 @@ Method: `POST`
 URL: `/login`
 Body:
 
-```json
+```js
 {
   "email": "test@example.com",
   "password": "hunter2"
@@ -144,7 +140,7 @@ Body:
 
 Response:
 
-```json
+```js
 {
   "id": 1,
   "name": "Example Name",
@@ -166,13 +162,12 @@ Note: Only returns top-level posts - no replies
 
 Response:
 
-```json
+```js
 [{
   "items": {
     "id": 1,
     "title": "autem cupiditate doloribus",
-    "body": "Ratione alias voluptas est ex architecto libero dolores quaerat
-    tempore.",
+    "body": "Ratione alias voluptas est ex architecto libero dolores quaerat tempore.",
     "userId": 1,
     "parentId": null,
     "replyCount": 12, // how many replies are attached to *this* post
@@ -194,13 +189,11 @@ are none with a reply count > 0.
 
 Response:
 
-```json
+```js
 {
   "id": 149,
   "title": "rem sed est",
-  "body": "Dolor itaque consequatur.\nEst est nam sunt et ad accusamus rerum
-  nihil.\nIpsa sint aliquam voluptates natus.\nDicta esse facere tempora velit
-  quia.",
+  "body": "Dolor itaque consequatur.\nEst est nam sunt et ad accusamus rerum nihil.\nIpsa sint aliquam voluptates atus.\nDicta esse facere tempora velit quia.",
   "createdAt": "2018-06-20T01:10:31.617Z",
   "updatedAt": "2018-06-20T01:10:31.619Z",
   "userId": 12,
@@ -217,8 +210,7 @@ Response:
   }, {
     "id": 239,
     "title": "voluptas dolores non",
-    "body": "Consectetur explicabo corrupti consequatur blanditiis consequatur
-    inventore sed eum iste. Tenetur placeat veritatis enim.",
+    "body": "Consectetur explicabo corrupti consequatur blanditiis consequatur inventore sed eum iste. Tenetur placeat eritatis enim.",
     "createdAt": "2018-06-20T01:10:32.992Z",
     "updatedAt": "2018-06-20T01:10:32.995Z",
     "userId": 6,
@@ -239,7 +231,7 @@ Note: You cannot change which post a reply is to
 
 Body:
 
-```json
+```js
 {
   "title": "a new title",
   "body": "a new body"
@@ -248,7 +240,7 @@ Body:
 
 Reponse:
 
-```json
+```js
 {
   "id": 149,
   "title": "a new title",
