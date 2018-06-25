@@ -61,7 +61,7 @@ async function login(ctx) {
     return ctx.throw(404, { error: 'User not found' });
   }
 
-  const match = comparePassword(user.password, password);
+  const match = await comparePassword(user.password, password);
 
   if (!match) {
     return ctx.throw(401, { error: 'Wrong password' });
