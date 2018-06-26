@@ -1,13 +1,17 @@
 import React from "react";
 import axios from "axios";
+import Panda from "../components/Panda";
+import Bamboo from "../components/Bamboo";
+import styles from "../styles.module.css";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // name: "aa",
-      email: "test@example.com",
-      password: "hunter2"
+      // email: "test@example.com",
+      // password: "hunter2"
+      email: "",
+      password: ""
     };
   }
 
@@ -43,33 +47,28 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <div>
-          <label>Name:</label>
+      <div className={styles.app}>
+        {/* <Bamboo /> */}
+        <header>
+          <h1>Tanda Social Network</h1>
+        </header>
+        <section>
           <input
             autoFocus
-            type="text"
-            value={this.state.name}
-            onChange={this.handleNameChange}
-          />
-        </div> */}
-        <div>
-          <label>Email:</label>
-          <input
             type="email"
             value={this.state.email}
             onChange={this.handleEmailChange}
+            placeholder={"Email address"}
           />
-        </div>
-        <div>
-          <label>Password:</label>
           <input
             type="password"
             value={this.state.password}
             onChange={this.handlePasswordChange}
+            placeholder={"Password"}
           />
-        </div>
-        <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.handleSubmit}>Submit</button>
+        </section>
+        <Panda />
       </div>
     );
   }
