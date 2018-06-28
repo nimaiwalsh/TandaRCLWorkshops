@@ -15,12 +15,6 @@ class Login extends React.Component {
     };
   }
 
-  // handleNameChange = e => {
-  //   this.setState({
-  //     name: e.target.value
-  //   });
-  // };
-
   handleEmailChange = e => {
     this.setState({
       email: e.target.value
@@ -41,9 +35,14 @@ class Login extends React.Component {
         password: this.state.password
       })
       .then(response => {
-        debugger;
+        this.props.handleToken(response.data.token)
+      })
+      .then(() => {
+        console.log('Successful login')
+        this.props.history.push('/')
       });
   };
+
 
   render() {
     return (
@@ -68,7 +67,7 @@ class Login extends React.Component {
           />
           <button onClick={this.handleSubmit}>Submit</button>
         </section>
-        <Panda />
+        {/* <Panda /> */}
       </div>
     );
   }

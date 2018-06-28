@@ -1,8 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Login from "./containers/Login";
-import registerServiceWorker from "./registerServiceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import registerServiceWorker from './registerServiceWorker';
+import App from './containers/App';
 
-ReactDOM.render(<Login />, document.getElementById("root"));
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
 
 registerServiceWorker();
