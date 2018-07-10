@@ -3,6 +3,7 @@ import axios from "axios";
 import Panda from "../components/Panda";
 import Bamboo from "../components/Bamboo";
 import styles from "../styles.module.css";
+import { connect } from "react-redux";
 
 class Login extends React.Component {
   constructor(props) {
@@ -30,15 +31,21 @@ class Login extends React.Component {
   handleSubmit = () => {
     axios
       .post("http://social.workshops.tanda.co/login", {
-        // name: this.state.name,
         email: this.state.email,
         password: this.state.password
       })
-      .then(response => {
-        this.props.handleToken(response.data.token)
-      })
-      .then(() => {
+      .then((response) => {
         console.log('Successful login')
+        console.log(response.data)
+        //Dispatch to the store and store token in state
+        this.props.dispatch({
+          type: 'login_success', 
+          payload: { 
+            token: response.data.token,
+            userName: response.data.email
+          }
+        })
+        //Redirect the page to home to simulate login
         this.props.history.push('/')
       });
   };
@@ -46,7 +53,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className={styles.app}>
+      <div className={styles.login}>
         {/* <Bamboo /> */}
         <header>
           <h1>Tanda Social Network</h1>
@@ -73,4 +80,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect()(Login);
